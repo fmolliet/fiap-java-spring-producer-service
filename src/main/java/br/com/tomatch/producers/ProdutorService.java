@@ -1,13 +1,12 @@
 package br.com.tomatch.producers;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,17 +29,17 @@ public class ProdutorService {
 		return ResponseEntity.ok().body(new ProdutorDto(produtor));
 	}
 
-	public ResponseEntity<List<ProdutorDto>> list(Pageable paginacao) {
+	public ResponseEntity<Page<ProdutorDto>> list(Pageable paginacao) {
 
 		try {
-			List<Produtor> produtores = new ArrayList<Produtor>();
-			_repository.findAll(paginacao).forEach(produtores::add);
+
+			Page<Produtor> produtores = _repository.findAll(paginacao);
 
 			if (produtores.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 
-			return ResponseEntity.ok().body(ProdutorDto.convertList(produtores));
+			return ResponseEntity.ok().body(ProdutorDto.convertPage(produtores));
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
