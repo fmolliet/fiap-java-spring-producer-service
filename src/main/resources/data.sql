@@ -1,0 +1,2 @@
+INSERT INTO PRODUTOR(cidade, documment, email, endereco, nome, status ) VALUES('Mogi das Cruzes', '111.222.333-44', 'stellamelissabp@octagonbrasil.com.br','Rua Joaquim Gomes Faria, 466 - Vila Andrade', 'Stella Melissa Bárbara Pinto', 'ACTIVATED');
+INSERT INTO PRODUTOR(cidade, documment, email, endereco, nome, status ) VALUES('Mogi das Cruzes', '795.521.558-35', 'lizcamilamelo_@novadeliveri.com.br','Rua Conselheiro Lafaiete, 988 - Jardim Vista Alegre', 'Liz Camila Melo', 'ACTIVATED');
