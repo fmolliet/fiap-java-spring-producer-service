@@ -10,6 +10,10 @@ FROM openjdk:8-jre-alpine
 
 WORKDIR /app
 
-COPY --from=MAVEN_BUILD /build/target/producers-0.0.1-SNAPSHOT.jar /app/
+FROM openjdk:8-jdk-alpine
 
+ARG JAR_FILE=target/my-application.jar
+ADD ${JAR_FILE} app.jar
+
+EXPOSE 8080
 ENTRYPOINT ["java","-Xmx521m" ,"-jar", "producers-0.0.1-SNAPSHOT.jar"]
