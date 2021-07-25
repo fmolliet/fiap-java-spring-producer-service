@@ -16,21 +16,15 @@ import springfox.documentation.spring.web.plugins.Docket;
 public class SwaggerConfigurations {
 	@Bean
 	public Docket forumApi() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-				.apis(RequestHandlerSelectors.basePackage("br.com.tomatch.producers"))
-				.paths(PathSelectors.ant("/*"))
+		return new Docket(DocumentationType.SWAGGER_2).select()
+				.apis(RequestHandlerSelectors.basePackage("br.com.tomatch.producers")).paths(PathSelectors.ant("/**"))
 				.build()
-				//.ignoredParameterTypes(Usuario.class)
+				// .ignoredParameterTypes(Usuario.class)
 				.globalOperationParameters(Arrays.asList(
-	                    new ParameterBuilder()
-	                    .name("Authorization")
-	                    .description("Header para token gerar o token JWT")
-	                    // Tipo do parametro
-	                    .modelRef(new ModelRef("string"))
-	                    // Onde vai o parametro
-	                    .parameterType("header")
-	                    .required(false)
-	                    .build()));
+						new ParameterBuilder().name("Authorization").description("Header para token gerar o token JWT")
+								// Tipo do parametro
+								.modelRef(new ModelRef("string"))
+								// Onde vai o parametro
+								.parameterType("header").required(false).build()));
 	}
 }
