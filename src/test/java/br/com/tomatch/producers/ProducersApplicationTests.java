@@ -3,10 +3,10 @@ package br.com.tomatch.producers;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class ProducersApplicationTests {
 
-	@Test
+	// @Test
 	void contextLoads() {
 	}
 

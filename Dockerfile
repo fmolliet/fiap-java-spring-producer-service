@@ -1,16 +1,15 @@
-FROM openjdk:12-jdk-alpine
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
+FROM maven:3.5.2-jdk-8-alpine AS MAVEN_BUILD
+
+COPY pom.xml /build/
+COPY src /build/src/
+
+WORKDIR /build/
+RUN mvn package
+
+FROM openjdk:8-jre-alpine
 
 WORKDIR /app
 
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-CMD ["./mvnw","install", "-Dmaven.test.skip=true"]
-CMD ["./mvnw","package", "-Dmaven.test.skip=true"]
+COPY --from=MAVEN_BUILD /build/target/producer-*.jar /app/app.jar
 
-ARG JAR_FILE=target/*.jar 
-COPY /target/producers-*.jar /producers.jar
-EXPOSE 8080
-
-ENTRYPOINT ["java","-Xmx521m" ,"-jar","/producers.jar"]
+ENTRYPOINT ["java","-Xmx521m" ,"-jar", "app.jar"]
