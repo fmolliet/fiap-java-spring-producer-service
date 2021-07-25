@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* br.com.tomatch.producer.ProducersApplication
+web: java -Dserver.port=$PORT -jar target/producers-0.0.1-SNAPSHOT.jar
