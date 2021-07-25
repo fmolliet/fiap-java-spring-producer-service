@@ -10,6 +10,6 @@ FROM openjdk:8-jre-alpine
 
 WORKDIR /app
 
-COPY --from=MAVEN_BUILD /build/target/producer-*.jar /app/app.jar
+COPY --from=MAVEN_BUILD /build/target/producers-0.0.1-SNAPSHOT.jar /app/
 
-ENTRYPOINT ["java","-Xmx521m" ,"-jar", "app.jar"]
+ENTRYPOINT ["java","-Xmx521m" ,"-jar", "producers-0.0.1-SNAPSHOT.jar"]
