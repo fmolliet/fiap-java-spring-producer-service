@@ -39,3 +39,12 @@ spring:
 
 server:
   port: ${PORT}
+
+swagger:
+  title: Cards
+  version: 1.0
+  description: Documentation for API
+  contact:
+    mail: email@gmail.com
+    url: some-url.com
+    name: COLABA card
